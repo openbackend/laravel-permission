@@ -15,6 +15,9 @@ use OpenBackend\LaravelPermission\Commands\ImportPermissionsCommand;
 use OpenBackend\LaravelPermission\Commands\ExportPermissionsCommand;
 use OpenBackend\LaravelPermission\Commands\CachePermissionsCommand;
 use OpenBackend\LaravelPermission\Commands\ClearPermissionCacheCommand;
+use OpenBackend\LaravelPermission\Commands\ApplyTemplateCommand;
+use OpenBackend\LaravelPermission\Commands\DetectConflictsCommand;
+use OpenBackend\LaravelPermission\Commands\SuggestPermissionsCommand;
 use OpenBackend\LaravelPermission\Middleware\PermissionMiddleware;
 use OpenBackend\LaravelPermission\Middleware\RoleMiddleware;
 use OpenBackend\LaravelPermission\Middleware\RoleOrPermissionMiddleware;
@@ -77,6 +80,9 @@ class PermissionServiceProvider extends ServiceProvider
                 ExportPermissionsCommand::class,
                 CachePermissionsCommand::class,
                 ClearPermissionCacheCommand::class,
+                ApplyTemplateCommand::class,
+                DetectConflictsCommand::class,
+                SuggestPermissionsCommand::class,
             ]);
         }
     }
