@@ -210,11 +210,11 @@ trait HasRoles
         $roleClass = $this->getRoleClass();
 
         if (\is_numeric($role)) {
-            return $roleClass->findById($role, $this->getDefaultGuardName());
+            return $roleClass::findById($role, $this->getDefaultGuardName());
         }
 
         if (\is_string($role)) {
-            return $roleClass->findByName($role, $this->getDefaultGuardName());
+            return $roleClass::findByName($role, $this->getDefaultGuardName());
         }
 
         return $role;
