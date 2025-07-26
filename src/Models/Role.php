@@ -74,7 +74,7 @@ class Role extends Model implements RoleContract
     public function users(): MorphToMany
     {
         return $this->morphedByMany(
-            getModelForGuard($this->attributes['guard_name'] ?? config('auth.defaults.guard')),
+            $this->getModelForGuard($this->attributes['guard_name'] ?? config('auth.defaults.guard')),
             'model',
             config('permission.table_names.model_has_roles'),
             config('permission.column_names.role_pivot_key') ?: 'role_id',
@@ -398,5 +398,21 @@ class Role extends Model implements RoleContract
         $newRole->givePermissionTo($this->permissions);
 
         return $newRole;
+    }
+
+    /**
+     * Get the model class for the specified guard.
+     */
+    protected function getModelForGuard(string $guard): string
+    {
+        return collect(config('auth.guards'))
+            ->map(function ($guard) {
+                if (! isset($guard['provider'])) {
+                    return null;
+                }
+
+                return config("auth.providers.{$guard['provider']}.model");
+            })
+            ->get($guard, config('auth.providers.users.model'));
     }
 }
