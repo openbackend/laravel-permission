@@ -42,7 +42,10 @@ class PermissionServiceProvider extends ServiceProvider
         $this->registerGates();
         $this->registerMacros();
 
-        $this->app->make(PermissionRegistrar::class)->registerPermissions();
+        // Only register permissions if tables exist
+        if ($this->hasPermissionTables()) {
+            $this->app->make(PermissionRegistrar::class)->registerPermissions();
+        }
     }
 
     protected function registerPublishables()
@@ -192,5 +195,14 @@ class PermissionServiceProvider extends ServiceProvider
                 return '<?php endif; ?>';
             });
         });
+    }
+
+    protected function hasPermissionTables(): bool
+    {
+        try {
+            return \Schema::hasTable('permissions') && \Schema::hasTable('roles');
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }
