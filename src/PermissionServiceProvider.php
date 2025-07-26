@@ -99,21 +99,17 @@ class PermissionServiceProvider extends ServiceProvider
     protected function registerMacros()
     {
         // Register query builder macros for easier permission queries
-        if (! \Illuminate\Database\Eloquent\Builder::hasMacro('whereHasPermission')) {
-            \Illuminate\Database\Eloquent\Builder::macro('whereHasPermission', function ($permission) {
-                return $this->whereHas('permissions', function ($query) use ($permission) {
-                    $query->where('name', $permission);
-                });
+        \Illuminate\Database\Eloquent\Builder::macro('whereHasPermission', function ($permission) {
+            return $this->whereHas('permissions', function ($query) use ($permission) {
+                $query->where('name', $permission);
             });
-        }
+        });
 
-        if (! \Illuminate\Database\Eloquent\Builder::hasMacro('whereHasRole')) {
-            \Illuminate\Database\Eloquent\Builder::macro('whereHasRole', function ($role) {
-                return $this->whereHas('roles', function ($query) use ($role) {
-                    $query->where('name', $role);
-                });
+        \Illuminate\Database\Eloquent\Builder::macro('whereHasRole', function ($role) {
+            return $this->whereHas('roles', function ($query) use ($role) {
+                $query->where('name', $role);
             });
-        }
+        });
     }
 
     protected function registerBladeExtensions()
