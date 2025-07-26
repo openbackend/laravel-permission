@@ -6,7 +6,7 @@ We actively support the following versions of OpenBackend Laravel Permission wit
 
 | Version | Supported          | Laravel Version | PHP Version |
 | ------- | ------------------ | --------------- | ----------- |
-| 1.x     | :white_check_mark: | 10.x, 11.x, 12.x | 8.1+ |
+| 1.1.0     | :white_check_mark: | 10.x, 11.x, 12.x | 8.1+ |
 | < 1.0   | :x:                | N/A             | N/A         |
 
 ## Reporting a Vulnerability
