@@ -57,9 +57,8 @@ class PermissionRegistrar
                 $this->cacheKey,
                 $this->cacheExpirationTime,
                 function () {
-                    return $this->getPermissionClass()
-                        ->with('roles')
-                        ->get();
+                    $permissionClass = $this->getPermissionClass();
+                    return $permissionClass::with('roles')->get();
                 }
             );
         }
