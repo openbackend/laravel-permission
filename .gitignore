@@ -1,0 +1,39 @@
+/vendor/
+/node_modules/
+/coverage/
+/.phpunit.cache/
+/.idea/
+/.vscode/
+/.DS_Store
+Thumbs.db
+
+# Composer
+composer.lock
+
+# Laravel specific
+*.log
+.env
+.env.backup
+.env.production
+
+# PHPUnit
+.phpunit.result.cache
+phpunit.xml
+
+# Testing
+tests/_output/
+tests/_support/_generated/
+
+# IDE
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
