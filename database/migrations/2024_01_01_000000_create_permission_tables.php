@@ -38,7 +38,11 @@ return new class extends Migration
             
             $table->timestamps();
             
-            $table->unique(['name', $teams['enabled'] ? ($teams['team_foreign_key'] ?? 'team_id') : 'name']);
+            if ($teams['enabled'] ?? false) {
+                $table->unique(['name', $teams['team_foreign_key'] ?? 'team_id']);
+            } else {
+                $table->unique('name');
+            }
         });
 
         // Permissions Table
@@ -67,7 +71,11 @@ return new class extends Migration
             
             $table->timestamps();
             
-            $table->unique(['name', 'guard_name', $teams['enabled'] ? ($teams['team_foreign_key'] ?? 'team_id') : 'guard_name']);
+            if ($teams['enabled'] ?? false) {
+                $table->unique(['name', 'guard_name', $teams['team_foreign_key'] ?? 'team_id']);
+            } else {
+                $table->unique(['name', 'guard_name']);
+            }
             $table->index(['resource_type', 'resource_id']);
             $table->index('expires_at');
             $table->index('group');
@@ -76,7 +84,7 @@ return new class extends Migration
         });
 
         // Roles Table
-        Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams) {
+        Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams, $tableNames) {
             $table->id();
             $table->string('name');
             $table->string('guard_name');
@@ -96,7 +104,11 @@ return new class extends Migration
             
             $table->timestamps();
             
-            $table->unique(['name', 'guard_name', $teams['enabled'] ? ($teams['team_foreign_key'] ?? 'team_id') : 'guard_name']);
+            if ($teams['enabled'] ?? false) {
+                $table->unique(['name', 'guard_name', $teams['team_foreign_key'] ?? 'team_id']);
+            } else {
+                $table->unique(['name', 'guard_name']);
+            }
             $table->index('parent_id');
             $table->index('level');
             
@@ -191,8 +203,8 @@ return new class extends Migration
         Schema::create($tableNames['permission_audits'] ?? 'permission_audits', function (Blueprint $table) use ($teams) {
             $table->id();
             $table->string('event');
-            $table->string('model_type');
-            $table->unsignedBigInteger('model_id');
+            $table->string('model_type')->nullable();
+            $table->unsignedBigInteger('model_id')->nullable();
             $table->string('permission_name')->nullable();
             $table->string('role_name')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();

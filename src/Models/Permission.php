@@ -13,6 +13,7 @@ use OpenBackend\LaravelPermission\Contracts\Permission as PermissionContract;
 use OpenBackend\LaravelPermission\Traits\HasTeams;
 use OpenBackend\LaravelPermission\Traits\RefreshesPermissionCache;
 use OpenBackend\LaravelPermission\Exceptions\PermissionDoesNotExist;
+use OpenBackend\LaravelPermission\PermissionRegistrar;
 
 class Permission extends Model implements PermissionContract
 {
@@ -143,9 +144,18 @@ class Permission extends Model implements PermissionContract
      */
     protected static function getPermissions(array $params = []): Collection
     {
-        return app(PermissionRegistrar::class)
-            ->setPermissionClass(static::class)
-            ->getPermissions($params);
+        // For simple operations, just query directly
+        $query = static::query();
+        
+        if (isset($params['name'])) {
+            $query->where('name', $params['name']);
+        }
+        
+        if (isset($params['guard_name'])) {
+            $query->where('guard_name', $params['guard_name']);
+        }
+        
+        return $query->get();
     }
 
     /**

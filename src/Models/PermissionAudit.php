@@ -9,17 +9,21 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class PermissionAudit extends Model
 {
     protected $fillable = [
-        'action',
+        'event',
         'model_type',
         'model_id',
+        'permission_name',
+        'role_name',
         'user_id',
-        'meta',
+        'old_values',
+        'new_values',
         'ip_address',
         'user_agent',
     ];
 
     protected $casts = [
-        'meta' => 'array',
+        'old_values' => 'array',
+        'new_values' => 'array',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

@@ -195,9 +195,8 @@ class Role extends Model implements RoleContract
      */
     protected static function getRoles(array $params = []): Collection
     {
-        return app(PermissionRegistrar::class)
-            ->setRoleClass(static::class)
-            ->getRoles($params);
+        // Simple implementation without registrar dependency
+        return static::with('permissions')->get();
     }
 
     /**
