@@ -405,7 +405,7 @@ class Role extends Model implements RoleContract
      */
     protected function getModelForGuard(string $guard): string
     {
-        return collect(config('auth.guards'))
+        $model = collect(config('auth.guards'))
             ->map(function ($guard) {
                 if (! isset($guard['provider'])) {
                     return null;
@@ -414,5 +414,7 @@ class Role extends Model implements RoleContract
                 return config("auth.providers.{$guard['provider']}.model");
             })
             ->get($guard, config('auth.providers.users.model'));
+
+        return $model ?: config('auth.providers.users.model', 'App\\Models\\User');
     }
 }
