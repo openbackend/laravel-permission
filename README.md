@@ -331,3 +331,11 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+
+## Support
+
+- 📧 Email: contact@openbackend.dev
+- 🐛 Issues: [GitHub Issues](https://github.com/openbackend/laravel-permission/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/openbackend/laravel-permission/discussions)
+- 🌐 Website: [openbackend.dev](https://openbackend.dev)

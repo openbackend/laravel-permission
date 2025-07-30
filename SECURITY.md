@@ -20,7 +20,7 @@ The OpenBackend team takes security vulnerabilities seriously. We appreciate you
 Instead, please report them via one of the following methods:
 
 #### 1. Email (Preferred)
-Send details to: **security@openbackend.org**
+Send details to: **security@openbackend.dev**
 
 #### 2. GitHub Security Advisories
 Use GitHub's private vulnerability reporting feature:
@@ -30,7 +30,7 @@ Use GitHub's private vulnerability reporting feature:
 
 #### 3. Direct Contact
 Contact the maintainer directly:
-- **Rudra Ramesh**: rudraramesh@openbackend.org
+- **Rudra Ramesh**: rudra@openbackend.dev
 - **GitHub**: [@rudraramesh](https://github.com/rudraramesh)
 
 ### What to Include
@@ -309,7 +309,7 @@ We thank the following security researchers for their responsible disclosure:
 
 For any security-related questions or concerns:
 
-- **Email**: security@openbackend.org
+- **Email**: security@openbackend.dev
 - **Response Time**: Within 24 hours
 - **Encryption**: PGP key available upon request
 
